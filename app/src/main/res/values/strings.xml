@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">TipCalcKotlin</string>
+    <string name="app_name">Tip calc</string>
+
+    <string name="main_button_submit">Calculate</string>
+    <string name="main_hint_bill">Total</string>
+    <string name="main_hint_percentage">tip %</string>
+    <string name="main_button_increase">+</string>
+    <string name="main_button_decrease">-</string>
+    <string name="main_button_clear">Clear recent</string>
+    <string name="main_notice_clear">Recent elements has been left empty</string>
+    <string name="main_menu_action_about">About</string>
+    <string name="global_message_tip">Tip %,.1f</string>
+    <string name="tip_detail_message_bill">Total %,.1f</string>
+    <string name="view_detail">View…</string>
 </resources>

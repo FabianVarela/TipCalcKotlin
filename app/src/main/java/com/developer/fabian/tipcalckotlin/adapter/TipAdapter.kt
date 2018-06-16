@@ -7,28 +7,38 @@ import android.view.View
 import android.view.ViewGroup
 import com.developer.fabian.tipcalckotlin.R
 import com.developer.fabian.tipcalckotlin.model.TipRecord
+import kotlinx.android.synthetic.main.item_row.view.*
 
-class TipAdapter(val context: Context, val dataset: List<TipRecord> = listOf(), val listener: IOnItemClickListener)
+class TipAdapter(val context: Context, val dataset: MutableList<TipRecord>, val listener: IOnItemClickListener)
     : RecyclerView.Adapter<TipAdapter.ViewHolder>() {
-
-    override fun getItemCount(): Int = dataset.size
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_row, parent, false)
         return ViewHolder(view)
     }
 
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(dataset[position], listener)
+
+    override fun getItemCount(): Int = dataset.size
+
+    fun add (tipRecord: TipRecord) {
+        dataset.add(0, tipRecord)
+        notifyDataSetChanged()
+    }
+
+    fun clear() {
+        dataset.clear()
+        notifyDataSetChanged()
+    }
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(tipRecord: TipRecord) {
+        fun bind(tipRecord: TipRecord, onItemClickListener: IOnItemClickListener) = with(itemView) {
+            txtContent.text = String().format(context.getString(R.string.global_message_tip), tipRecord.getTip())
+            txtDateContent.text = tipRecord.getDateFormatted()
 
-        }
-
-        fun setOnItemClickListener(element: TipRecord, onItemClickListener: IOnItemClickListener) {
-
+            btnView.setOnClickListener({
+                onItemClickListener.onItemClick(tipRecord)
+            })
         }
     }
 }

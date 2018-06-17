@@ -5,15 +5,13 @@ import java.util.*
 
 class TipRecord {
     var bill: Double = 0.0
-    var tipPercentage: Int = 0
+    var tipPercentage: Double = 0.0
     var timestamp: Date = Date()
 
-    fun getTip(): Double {
-        return bill * (tipPercentage / 100)
-    }
+    fun getTip(): Double = bill * (tipPercentage / 100)
 
     fun getDateFormatted(): String {
-        val format: SimpleDateFormat = SimpleDateFormat("MM dd.yyyy HH:mm", Locale.getDefault())
+        val format = SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.getDefault())
         return format.format(timestamp)
     }
 }
